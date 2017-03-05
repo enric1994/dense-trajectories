@@ -2,8 +2,8 @@
 TARGETS := DenseTrack Video
 
 # set the build configuration set 
-BUILD := release
-#BUILD := debug
+#BUILD := release
+BUILD := debug
 
 # set bin and build dirs
 BUILDDIR := .build_$(BUILD)
