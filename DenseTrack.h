@@ -86,6 +86,8 @@ public:
     std::vector<float> hof;
     std::vector<float> mbhX;
     std::vector<float> mbhY;
+    int var_x;
+    int var_y;
     int index;
 
     Track(const Point2f& point_, const TrackInfo& trackInfo, const DescInfo& hogInfo,
