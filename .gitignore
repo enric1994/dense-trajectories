@@ -1,0 +1,4 @@
+*.avi
+*.mp4
+debug/
+.build_debug/

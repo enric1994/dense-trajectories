@@ -1,3 +1,13 @@
+```
+git clone https://github.com/enric1994/dense-trajectories.git
+cd dense_trajectories/docker
+make build
+make run
+make devel
+./debug/DenseTrack video.avi > features
+```
+
+
 ### Compiling ###
 
 In order to compile the dense trajectories code, you need to have the following libraries installed in your system:
