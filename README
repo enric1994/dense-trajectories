@@ -4,7 +4,8 @@ cd dense_trajectories/docker
 make build
 make run
 make devel
-./debug/DenseTrack video.avi > features
+make
+./debug/DenseTrack video.avi > features.txt
 ```
 
 
