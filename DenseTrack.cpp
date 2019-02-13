@@ -43,12 +43,12 @@ int main(int argc, char** argv)
 
 	int frame_num = 0;
 	TrackInfo trackInfo;
-	DescInfo hogInfo, hofInfo, mbhInfo;
+	DescInfo hogInfo; //, hofInfo, mbhInfo;
 
 	InitTrackInfo(&trackInfo, track_length, init_gap);
 	InitDescInfo(&hogInfo, 8, false, patch_size, nxy_cell, nt_cell);
-	InitDescInfo(&hofInfo, 9, true, patch_size, nxy_cell, nt_cell);
-	InitDescInfo(&mbhInfo, 8, false, patch_size, nxy_cell, nt_cell);
+	// InitDescInfo(&hofInfo, 9, true, patch_size, nxy_cell, nt_cell);
+	// InitDescInfo(&mbhInfo, 8, false, patch_size, nxy_cell, nt_cell);
 
 	SeqInfo seqInfo;
 	InitSeqInfo(&seqInfo, video);
@@ -117,7 +117,7 @@ int main(int argc, char** argv)
 				// save the feature points
 				std::list<Track>& tracks = xyScaleTracks[iScale];
 				for(i = 0; i < points.size(); i++)
-					tracks.push_back(Track(points[i], trackInfo, hogInfo, hofInfo, mbhInfo));
+					tracks.push_back(Track(points[i], trackInfo, hogInfo)); //, hofInfo, mbhInfo));
 			}
 
 			// compute polynomial expansion
@@ -148,12 +148,12 @@ int main(int argc, char** argv)
 			DescMat* hogMat = InitDescMat(height+1, width+1, hogInfo.nBins);
 			HogComp(prev_grey_pyr[iScale], hogMat->desc, hogInfo);
 
-			DescMat* hofMat = InitDescMat(height+1, width+1, hofInfo.nBins);
-			HofComp(flow_pyr[iScale], hofMat->desc, hofInfo);
+			// DescMat* hofMat = InitDescMat(height+1, width+1, hofInfo.nBins);
+			// HofComp(flow_pyr[iScale], hofMat->desc, hofInfo);
 
-			DescMat* mbhMatX = InitDescMat(height+1, width+1, mbhInfo.nBins);
-			DescMat* mbhMatY = InitDescMat(height+1, width+1, mbhInfo.nBins);
-			MbhComp(flow_pyr[iScale], mbhMatX->desc, mbhMatY->desc, mbhInfo);
+			// DescMat* mbhMatX = InitDescMat(height+1, width+1, mbhInfo.nBins);
+			// DescMat* mbhMatY = InitDescMat(height+1, width+1, mbhInfo.nBins);
+			// MbhComp(flow_pyr[iScale], mbhMatX->desc, mbhMatY->desc, mbhInfo);
 
 			// track feature points in each scale separately
 			std::list<Track>& tracks = xyScaleTracks[iScale];
@@ -188,9 +188,9 @@ int main(int argc, char** argv)
 				RectInfo rect;
 				GetRect(prev_point, rect, width, height, hogInfo);
 				GetDesc(hogMat, rect, hogInfo, iTrack->hog, index);
-				GetDesc(hofMat, rect, hofInfo, iTrack->hof, index);
-				GetDesc(mbhMatX, rect, mbhInfo, iTrack->mbhX, index);
-				GetDesc(mbhMatY, rect, mbhInfo, iTrack->mbhY, index);
+				// GetDesc(hofMat, rect, hofInfo, iTrack->hof, index);
+				// GetDesc(mbhMatX, rect, mbhInfo, iTrack->mbhX, index);
+				// GetDesc(mbhMatY, rect, mbhInfo, iTrack->mbhY, index);
 				iTrack->addPoint(point);
 
 				// if the trajectory achieves the maximal length
@@ -221,9 +221,9 @@ int main(int argc, char** argv)
 							printf("%f\t%f\t", i, raw_trajectory[i].x, raw_trajectory[i].y);
 
 						PrintDesc(iTrack->hog, hogInfo, trackInfo);
-						PrintDesc(iTrack->hof, hofInfo, trackInfo);
-						PrintDesc(iTrack->mbhX, mbhInfo, trackInfo);
-						PrintDesc(iTrack->mbhY, mbhInfo, trackInfo);
+						// PrintDesc(iTrack->hof, hofInfo, trackInfo);
+						// PrintDesc(iTrack->mbhX, mbhInfo, trackInfo);
+						// PrintDesc(iTrack->mbhY, mbhInfo, trackInfo);
 						printf("\n");
 					}
 
@@ -233,9 +233,9 @@ int main(int argc, char** argv)
 				++iTrack;
 			}
 			ReleDescMat(hogMat);
-			ReleDescMat(hofMat);
-			ReleDescMat(mbhMatX);
-			ReleDescMat(mbhMatY);
+			// ReleDescMat(hofMat);
+			// ReleDescMat(mbhMatX);
+			// ReleDescMat(mbhMatY);
 
 			if(init_counter != trackInfo.gap)
 				continue;
@@ -248,7 +248,7 @@ int main(int argc, char** argv)
 			DenseSample(grey_pyr[iScale], points, quality, min_distance);
 			// save the new feature points
 			for(i = 0; i < points.size(); i++)
-				tracks.push_back(Track(points[i], trackInfo, hogInfo, hofInfo, mbhInfo));
+				tracks.push_back(Track(points[i], trackInfo, hogInfo)); //, hofInfo, mbhInfo));
 		}
 
 		init_counter = 0;

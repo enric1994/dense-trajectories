@@ -83,17 +83,17 @@ class Track
 public:
     std::vector<Point2f> point;
     std::vector<float> hog;
-    std::vector<float> hof;
-    std::vector<float> mbhX;
-    std::vector<float> mbhY;
+    // std::vector<float> hof;
+    // std::vector<float> mbhX;
+    // std::vector<float> mbhY;
     int var_x;
     int var_y;
     int index;
 
-    Track(const Point2f& point_, const TrackInfo& trackInfo, const DescInfo& hogInfo,
-          const DescInfo& hofInfo, const DescInfo& mbhInfo)
-        : point(trackInfo.length+1), hog(hogInfo.dim*trackInfo.length),
-          hof(hofInfo.dim*trackInfo.length), mbhX(mbhInfo.dim*trackInfo.length), mbhY(mbhInfo.dim*trackInfo.length)
+    Track(const Point2f& point_, const TrackInfo& trackInfo, const DescInfo& hogInfo)
+        //   const DescInfo& hofInfo, const DescInfo& mbhInfo)
+        : point(trackInfo.length+1), hog(hogInfo.dim*trackInfo.length)
+        //   hof(hofInfo.dim*trackInfo.length), mbhX(mbhInfo.dim*trackInfo.length), mbhY(mbhInfo.dim*trackInfo.length)
     {
         index = 0;
         point[0] = point_;
