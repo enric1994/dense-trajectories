@@ -10,7 +10,7 @@
 
 using namespace cv;
 
-int show_track = 1; // set show_track = 1, if you want to visualize the trajectories
+int show_track = 0; // set show_track = 1, if you want to visualize the trajectories
 
 int start[19] = {15290, 17340, 18150, 19250, 20560, 24020, 40850, 41412, 41500, 47670, 50365, 50940, 52750, 54375, 55315, 59500, 60169, 60400, 60557};
 int end[19]   = {15425, 17700, 18240, 19450, 26400, 24100, 40900, 41500, 41630, 47750, 50500, 51050, 52860, 54475, 55500, 59560, 60219, 60500, 60600};
