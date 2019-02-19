@@ -35,25 +35,10 @@ for root, dirs, files in os.walk('/data/train'):
                 # Capture frame-by-frame
                 ret, frame = cap.read()
 
-                #print(frame.)
                     
                 if ret:    
                     # calculate new background:
                     background = background * update_rate + alpha * frame
-                
-                    
-                    
-                    #if frame_counter == 2000:
-                    #    cv2.imshow('frame',background)
-                    #    print(np.max(background))
-                    #    cv2.waitKey()
-                    #    break
-                
-
-                    frame_counter = frame_counter + 1
-
-                    if(frame_counter * 10 % length == 0):
-                        print(frame_counter, frame_counter*100//length, '% Done')
                 
                 else:
                         
@@ -63,4 +48,4 @@ for root, dirs, files in os.walk('/data/train'):
             # When everything done, release the capture
             cap.release()
             #cv2.destroyAllWindows()
-            cv2.imwrite('background_fullvideo_v' + str(name) + '.png',background)
+            cv2.imwrite('/code/backgrounds/background_fullvideo_v' + str(name) + '.png',background)
